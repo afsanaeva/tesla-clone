@@ -35,6 +35,7 @@ function Section({ title, description, LeftButtonText, RightButtonText, backgrou
 export default Section
 const Wrap = styled.div
     `
+z-index:10;    
 width:100vw;
 height:100vh;
 background-size:cover;
@@ -51,6 +52,7 @@ const ItemText = styled.div
     `
 padding-top:15vh;
 text-align:center;
+z-index:10;  
 `
 
 const ButtonGroup = styled.div
