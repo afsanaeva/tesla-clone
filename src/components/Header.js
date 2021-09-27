@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "styled-components"
+import MenuIcon from '@material-ui/icons/Menu';
 function Header() {
     return (
 
@@ -17,6 +18,7 @@ function Header() {
                 <a href="#">Shop</a>
                 <a href="#">Tesla Account</a>
             </RightMenu>
+            <CustomMenu/>
         </Container>
 
     )
@@ -30,6 +32,7 @@ const Container = styled.div
     display:flex;
     align-items:center;
     padding: 0 20px;
+    justify-content: space-between;
     top:0;
     left:0;
     right:0;
@@ -48,12 +51,21 @@ const Menu = styled.div
         padding: 0 10px;
         flex-wrap: nowrap;
     }
+
+    @media (max-width: 768px) { 
+        display:none;
+       }
     `
-    const RightMenu = styled.div
-    `
+
+const RightMenu = styled.div
+    `display:flex;
+    align-items:center;
     a{
         font-weight: bold;
         text-transform: uppercase;
         margin-right:10px;
  
-    }`    
+    }`
+    
+const CustomMenu = styled(MenuIcon)
+`cursor: pointer;`
