@@ -2,9 +2,13 @@ import React from 'react'
 import styled from "styled-components"
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
+import { selectCars } from '../features/car/carSlice';
 import { useState } from "react"
+import { useSelector } from "react-redux"
 function Header() {
     const [burgerStatus,setBurgerStatus] = useState(false)
+    const cars = useSelector(selectCars)
+    // console.log(cars);
     return (
 
         <Container>
@@ -12,10 +16,9 @@ function Header() {
                 <img src="./images/logo.svg" />
             </a>
             <Menu>
-                <a href="#">Model S</a>
-                <a href="#">Model 3</a>
-                <a href="#">Model X</a>
-                <a href="#">Model Y</a>
+            {cars && cars.map((car,index)=>(
+                <a key={index} href="#">{car}</a>
+            ))}
             </Menu>
             <RightMenu>
                 <a href="#">Shop</a>
@@ -27,7 +30,10 @@ function Header() {
                <CloseWrapper>
                <CustomClose onClick ={()=>setBurgerStatus(false)}/>
                </CloseWrapper>
-                <li><a href="#">Existing Inventory</a></li>
+               {cars && cars.map((car,index)=>(
+
+                <li><a key={index} href="#">{car}</a></li>
+            ))}
                 <li><a href="#">Used Inventory</a></li>
                 <li><a href="#">Test Drive</a></li>
                 <li><a href="#">Roadster</a></li>
@@ -105,6 +111,7 @@ display:flex;
 flex-direction:column;
 text-align:start;
 transform: ${ props=> props.show ? 'translateX(0%)':'translateX(100%)'};
+transition:transform 0.2s;
 
 li{
     padding: 15px 0;
